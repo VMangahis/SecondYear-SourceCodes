@@ -84,20 +84,7 @@ int main()
 	getline( cin, com  );
 	command.push(com);
 	command.pop();
-	
-	
-	
-	
-	
-	/*
-	getline(cin, com);
-	command.push(com);
-	
-	
-	//push(command);
-	push(command);
-	pop(command);*/
-	
+		
 }
 
 
