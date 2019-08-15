@@ -1,3 +1,5 @@
+// Syntax Parsing through push and pop function(getline command)
+
 #include<iostream>
 #include<string>
 using namespace std;
