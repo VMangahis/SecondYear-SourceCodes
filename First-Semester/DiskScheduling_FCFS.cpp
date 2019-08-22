@@ -13,8 +13,12 @@ int main()
 	int pos = 0;
 	int total_headMovement = 0;
 	int trackRequest[10];
+	int seekTime = 0;
 	cout << "Input location of R/W Head" << endl;
 	cin >> pos;
+
+	cout << "Input seek rate " << endl;
+	cin >> seekTime;
 
 	for(int input = 0; input < 8; input++)
 	{
@@ -50,6 +54,7 @@ int main()
     }
 
     cout << "Total head movement: " << total_headMovement << endl;
+    cout << "Seek Time " << seekTime * total_headMovement << " ms" << endl;
     cout << "Insert GUI";
     return 0;
 
