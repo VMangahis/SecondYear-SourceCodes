@@ -12,23 +12,34 @@ int main()
 {
 	int pos = 0;
 	int total_headMovement = 0;
-	int trackRequest[10];
+	int *trackRequest;
+	int seekTime = 0;
+	int diskReq = 0;
+
+	cout << "Input number of Disk Requests" << endl;
+	cin >> diskReq;
+
+	trackRequest = new int[diskReq];
+
 	cout << "Input location of R/W Head" << endl;
 	cin >> pos;
 
-	for(int input = 0; input < 8; input++)
+	cout << "Input seek rate " << endl;
+	cin >> seekTime;
+
+	for(int input = 0; input < diskReq; input++)
 	{
 		cout << "Input track # " << input+1 << ": ";
 		cin >> trackRequest[input];
 	}
 
-	for(int out = 0 ; out < 8 ; out++)
+	for(int out = 0 ; out < diskReq ; out++)
 	{
 		cout << trackRequest[out] << ", ";
 	}
 
 	// Calculation
-	for(int cal = 0; cal < 8 ; cal ++)
+	for(int cal = 0; cal < diskReq ; cal ++)
     {
         if(cal == 0)
         {
@@ -50,6 +61,7 @@ int main()
     }
 
     cout << "Total head movement: " << total_headMovement << endl;
+    cout << "Seek Time " << seekTime * total_headMovement << " ms" << endl;
     cout << "Insert GUI";
     return 0;
 
