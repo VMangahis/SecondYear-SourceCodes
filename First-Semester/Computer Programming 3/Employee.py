@@ -1,5 +1,5 @@
 find = ""
-getindex = 0
+
 dictionary = {}
 
 for i in range(0, 10):
