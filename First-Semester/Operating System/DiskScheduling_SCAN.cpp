@@ -45,7 +45,7 @@ int main()
     {
         for(int mv_a = 0 ; mv_a < diskReq - mv - 1; mv_a++)
         {
-            if(pos < prevPos)
+            if(pos < prevPos)                                       // If downward direction then sort in ascending order
             {
                 if(trackRequest[mv_a] > trackRequest[mv_a+1])
                 {
@@ -56,7 +56,7 @@ int main()
 
             }
             else{
-                if(trackRequest[mv_a] < trackRequest[mv_a+1])
+                if(trackRequest[mv_a] < trackRequest[mv_a+1])      // If upward direction then sort in descending order
                 {
                     tempValue=trackRequest[mv_a];
                     trackRequest[mv_a] = trackRequest[mv_a+1];
@@ -67,10 +67,10 @@ int main()
         }
     }
 
-        // downward direction
-        while(counter < diskReq)
+
+        while(counter < diskReq)                                    // Loop that will count on until what index will be bubble sorted later
         {
-            if(pos < prevPos)
+            if(pos < prevPos)                                       // downward direction
             {
                 if(trackRequest[counter] < pos)
                 {
@@ -79,7 +79,7 @@ int main()
 
             }
 
-            else{
+            else{                                                   //upward direction
                 if(trackRequest[counter] > pos)
                 {
                     sweep_a++;
@@ -89,11 +89,11 @@ int main()
             counter++;
         }
 
-        for(int firstSweep = 0 ; firstSweep < sweep_a-1; firstSweep++ )
+        for(int firstSweep = 0 ; firstSweep < sweep_a-1; firstSweep++ )                 // sweep_a - for the limit on until what index will only be sorted.
         {
             for(int firstSweep_a = 0; firstSweep_a < sweep_a -firstSweep - 1; firstSweep_a++)
             {
-                if(pos < prevPos)
+                if(pos < prevPos)                                                       // if downward direction, then sort in descending order
                 {
                          if(trackRequest[firstSweep_a] < trackRequest[firstSweep_a+1])
                     {
@@ -104,7 +104,7 @@ int main()
 
                 }
 
-                else{
+                else{                                                                   // if upward direction, then sort in ascending order
                      if(trackRequest[firstSweep_a] > trackRequest[firstSweep_a+1])
                     {
                     tempValue = trackRequest[firstSweep_a];
@@ -115,7 +115,7 @@ int main()
 
 
             }
-            firstSweepEnd++;
+            firstSweepEnd++;                                                           // firstSweepEnd for indicating at what index will the next sorting start after sorting in ascending or desc order
         }
         for(int up =  firstSweepEnd; up < diskReq - 1  ; up++ )
         {
@@ -123,7 +123,7 @@ int main()
             {
                 if(pos< prevPos)
                 {
-                    if(trackRequest[up_a] > trackRequest[up_a+1])
+                    if(trackRequest[up_a] > trackRequest[up_a+1])                      // (Downward direction)after sorting in descending order, then sort in ascending order starting from index "firstSweepEnd"
                     {
                     tempValue = trackRequest[up_a];
                     trackRequest[up_a] = trackRequest[up_a+1];
@@ -133,7 +133,7 @@ int main()
                 }
 
                 else{
-                    if(trackRequest[up_a] < trackRequest[up_a+1])
+                    if(trackRequest[up_a] < trackRequest[up_a+1])                       // (upward direction) after sorting in ascending order, then sort in descending order
                     {
                     tempValue = trackRequest[up_a];
                     trackRequest[up_a] = trackRequest[up_a+1];
@@ -145,10 +145,10 @@ int main()
 
             }
         }
-        if(pos< prevPos)
+        if(pos< prevPos)                                    //thm calculation in downward direction
         total_headMovement = pos + trackRequest[diskReq-1];
 
-        else
+        else                                                // thm calc in upward direction
         total_headMovement = (199 - pos) + (199 - trackRequest[diskReq-1]);
 
     for(int print = 0; print < diskReq ; print++)
