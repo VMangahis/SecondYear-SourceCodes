@@ -43,11 +43,11 @@ int main()
     {
         if(swp == 0)
         {
-            tempValue = trackRequest[swp];
-            lowestRequestTime = abs(pos-trackRequest[swp]);
+            tempValue = trackRequest[swp];                          // used as a temporary holder for swapping after checking the nearest track request
+            lowestRequestTime = abs(pos-trackRequest[swp]);         // distance between current r/w pos and first index of track is assumed to be nearest
             while(counter < diskReq)
             {
-                if(lowestRequestTime > abs(pos-trackRequest[counter+1]))
+                if(lowestRequestTime > abs(pos-trackRequest[counter+1]))    //comparing if the assumed lowestRequesttime is still greater than the distance between pos and other track track requests
                 {
                         lowestRequestTime = abs(trackRequest[counter+1]-pos);
                         index = counter+1;
@@ -58,7 +58,7 @@ int main()
 
                 counter++;
             }
-            trackRequest[swp] = trackRequest[index];
+            trackRequest[swp] = trackRequest[index];            //swap
             trackRequest[index] = tempValue;
         }
 
@@ -66,7 +66,7 @@ int main()
             tempValue = trackRequest[swp];
             index = swp;
             counter = swp;
-            lowestRequestTime = abs(trackRequest[swp-1]-trackRequest[swp]);
+            lowestRequestTime = abs(trackRequest[swp-1]-trackRequest[swp]);     // assumed nearest is distance between previous track requests and current track request in the loop
 
             while(counter < diskReq)
             {
