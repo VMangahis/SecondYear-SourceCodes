@@ -1,6 +1,6 @@
 /*
  *
- * FCFS Scheduling Algo - Disk Sched
+ * SSTF Scheduling Algo - Disk Sched
  *
  */
 
