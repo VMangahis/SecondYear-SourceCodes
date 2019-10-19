@@ -5,7 +5,7 @@
 #include<algorithm>
 using namespace std;
 
-struct Stack{
+/*struct Stack{
 
 	char *cm;
 	int size;
@@ -23,7 +23,6 @@ struct Stack{
 
 
 	void pop(){
-		int counter = 0;
 		char getString[] = {'g','e','t','l','i','n','e', '(','c','i','n',',' };
 
         if(cm[size-1] != ';' || cm[size-2] != ')')
@@ -60,27 +59,46 @@ struct Stack{
 
 
 
-};
+};*/
 
 
 
 int main()
 {
-	Stack command;
+	//Stack command;
+	
+	
 	string com;
+	string correct = "getline(cin,";
 	cout << "Input getline commmand" << endl;
-	getline( cin, com  );
+	getline(cin, com);
 	com.erase(remove(com.begin(),com.end(), ' '), com.end());
-	command.push(com);
-	command.pop();
-	if(command.correctSyntax)
-    {
+	
+	if(com[com.length()-1] != ';' || com[com.length()-2] != ')')
+	{
+		cout << "Invalid syntax" << endl;
+		return 0;
+	}
+
+	for(int a = 0; a < com.length(); a++)
+	{
+		if(com[a] != correct[a])
+		{
+			cout << "Invalid Syntax" << endl;
+			return 0;
+		}
+	}
+	
         cout << "Valid Syntax" << endl;
-    }
-    else{
-        cout << "Syntax Error " << endl;
-    }
+    
+    
 
 }
+
+
+//getline    ( ci  n , x ) ;   ==  getline(cin,x);
+
+
+
 
 

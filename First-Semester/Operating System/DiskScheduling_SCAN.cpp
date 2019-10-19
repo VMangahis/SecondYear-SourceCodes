@@ -24,7 +24,7 @@ int main()
 	cout << "Input number of disk request " << endl;
 	cin >> diskReq;
 
-	trackRequest = new int[diskReq];
+	trackRequest = new int[diskReq+1];
 
 	cout << "Input current location of R/W Head" << endl;
 	cin >> pos;
