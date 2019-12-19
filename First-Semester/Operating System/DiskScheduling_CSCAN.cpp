@@ -56,17 +56,12 @@ int main()
 		}
 		
 	}
-	if(pos < prevPos)
-	{
-		lessCurr = new int[lowerCurr+1];
-		moreCurr = new int[higherCurr+1];
-	}
-	else
-	{
-		lessCurr = new int[lowerCurr+1];
-		moreCurr = new int[higherCurr+1];
-	}
 	
+	
+		lessCurr = new int[lowerCurr+1];
+		moreCurr = new int[higherCurr+1];
+	
+
 	
 	for(int a = 0; a <diskReq; a++)
 	{
