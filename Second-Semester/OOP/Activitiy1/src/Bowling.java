@@ -3,73 +3,67 @@ import java.util.Scanner;
 public class Bowling {
 
 	public static void main(String[] args) {
-			
+		// Perfect = 300 Score
 		Scanner input = new Scanner(System.in);
-		int[][]frameArray = new int[10][2];
+		int[][] rolls = new int[10][2];
 		int frameScore = 0;
+		int pins = 10;
 		int totalScore = 0;
 		boolean isStrike = false;
 		boolean isSpare = false;
 		
-		for(int frame = 0; frame < 10 ; frame++)
+		
+		for(int frame = 0 ; frame < 10 ; frame++)
 		{
-			for(int tries = 0 ; tries < 2 ; tries++)
+			System.out.println("Frame: " + (frame+1));
+			pins = 10;
+			for(int roll = 0; roll < 2; roll++)
 			{
-				
-				
+				System.out.println("Roll: " + (roll+1));
+				System.out.println("Number of pins knocked down (" + (pins) + " left):" );
 				System.out.println("Score: " + totalScore);
-				System.out.println("Frame "+ (frame+1) + '\n');
-				System.out.println("Roll: " + (tries+1) );
-				frameArray[frame][tries] = input.nextInt();
-				
-				
-				if(isSpare)
+				rolls[frame][roll] = input.nextInt();
+				while(rolls[frame][roll] > pins || rolls[frame][roll] < 0)
 				{
-					totalScore += frameArray[frame][tries]+10;
+					System.out.println("Input cannot be greater than the amount of pins left or a negative number. Please try again.");
+					System.out.println("Number of pins knocked down (" + (pins) + " left):" );
+					rolls[frame][roll] = input.nextInt();
+				}
+				
+				if(roll == 0 && isSpare)
+				{
+					totalScore+= (rolls[frame][roll]+ 10); 	// 10 + next number of pins knock down 
 					isSpare = false;
+				}
+				
+				if(roll == 1 && isStrike)		// 10 + total pins knocked down in the next frame 
+				{
+					totalScore += (rolls[frame][roll]+ rolls[frame][roll-1] + 10);  
+					isStrike = false;
 				}
 				
 				
 				
+				pins-=rolls[frame][roll];
 				
-				if(tries == 1)	
-					while(frameArray[frame][tries] > 10 - frameArray[frame][tries-1])
-					{
-						System.out.println("Invalid input. There are only "+(10-frameArray[frame][tries-1]) + " pins left.");
-						frameArray[frame][tries] = input.nextInt();
-					}
-				
-				
-				
-				frameScore += frameArray[frame][tries];
-				
-				
-				if(frameArray[frame][tries] == 10)
+				if(pins == 0 && roll == 0) 		// Strike
 				{
 					System.out.println("STRIKE!");
-					totalScore+= frameArray[frame][tries];
 					isStrike = true;
-					isSpare = false;
 					break;
 				}
-				if(frameScore == 10)
+				else if(pins == 0 && roll == 1) // Spare
 				{
-					isStrike = false;
-					isSpare = true;
 					System.out.println("SPARE!");
+					isSpare = true;
 				}
-				
-				
+				else if(roll == 1) 				// Open Frame
+				{
+					System.out.println("OPEN FRAME!");
+					totalScore+=(rolls[frame][roll] + rolls[frame][roll-1]);
+				}
 			}
-			if(frame != 0)	
-			{
-				totalScore += frameScore;
-				frameScore = 0;
-			}
-		
-			
 		}
-
 	}
 
 }
